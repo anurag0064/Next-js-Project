@@ -1,6 +1,4 @@
-"use client"
-
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@/app/components/buttons/Button';
 import { LuPencilLine } from 'react-icons/lu';
 import { FaPlus, FaRegClock } from 'react-icons/fa';
@@ -15,47 +13,28 @@ import memoji2 from '../../../../../assets/images/memoji2.jpg';
 import ToggleSwitch from '../../../components/toggle/toggleSwitch';
 
 function MainContent() {
-    const [selectedItem, setSelectedItem] = useState();
-
-    const handleOnClick = (item) => {
-        setSelectedItem(item);
-    };
-
-    const dropdownItems = [
-        { label: 'Edit', href: '/' },
-        { label: 'Duplicate', href: '/' },
-        { label: 'Archive', href: '/' },
-        { label: 'Move', href: '/' },
-        { label: 'Add to favorites', href: '/' },
-        { label: 'Delete', href: '/' },
-    ]
-
     const buttonData = [
-        { 
-            text: "", 
-            icon: <FaRegClock />, 
+        {
+            text: "",
+            icon: <FaRegClock />,
             className: "border border-slate-200 hover:bg-slate-100",
-            
-    
-        },
-        { 
-            text: "", 
-            icon: <IoIosStarOutline />, 
-            className: "border border-slate-200 hover:bg-slate-100",
-         
+            onClick: () => alert('Alarm button')
         },
         {
-            text: "Share", 
-            icon: <IoShareSocialOutline />, 
-            className: "bg-[#185de9] border-none gap-3 text-white hover:bg-indigo-600",
-          
-        },
-        { 
-            text: "", 
-            icon: <BsThreeDots />, 
+            text: "",
+            icon: <IoIosStarOutline />,
             className: "border border-slate-200 hover:bg-slate-100",
-            dropdownItems: dropdownItems,
-            onClick: handleOnClick
+            onClick: () => alert('Star button')
+        },
+        {
+            text: "Share",
+            icon: <IoShareSocialOutline />,
+            className: "bg-[#185de9] border-none gap-3 text-white hover:bg-indigo-600",
+            onClick: () => alert('Share button')
+        },
+        {
+            text: "vdfvd",
+            dropdown: true,
         }
     ];
 
@@ -93,7 +72,7 @@ function MainContent() {
                     { name: 'Karan', image: memoji.src }
                 ]} />
                 <Button
-                    icon={<FaPlus/>}
+                    icon={<FaPlus />}
                     text={'Add Member'}
                     className={"border border-slate-200 hover:bg-slate-100 text-xs"}
                     onClick={() => alert('Adding member button')}
@@ -101,10 +80,10 @@ function MainContent() {
                 <div className='flex items-center gap-2'>
                     <IoMdLock />
                     <h1 className='text-xs'>Private</h1>
-                    <ToggleSwitch className='text-xs'/>
+                    <ToggleSwitch className='text-xs' />
                 </div>
             </div>
-            <DefaultTab/>
+            <DefaultTab />
         </div>
     );
 }

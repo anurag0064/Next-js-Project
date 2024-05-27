@@ -15,6 +15,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import DefaultTodo from "../defaultTodo/DefaultTodo";
+import TimelineCalendar from "../timelineCalendar/TimelineCalendar";
+import Calendar from "../calendar/Calendar";
 
 
 export function DefaultTab() {
@@ -34,19 +36,14 @@ export function DefaultTab() {
       label: "Timeline",
       value: "timeline",
       content: (
-        <p className="text-sm text-black">
-          Because it's about motivating the doers. Because I'm here to follow my
-          dreams and inspire other people to follow their dreams, too.
-        </p>
+        <TimelineCalendar/>
       ),
     },
     {
       label: "Calendar",
       value: "calendar",
       content: (
-        <p className="text-sm text-black">
-          You can also use variant modifiers to target media queries like responsive breakpoints, dark mode, prefers-reduced-motion, and more. For example, use md:drop-shadow-xl to apply the drop-shadow-xl utility at only medium screen sizes and above.
-        </p>
+       <Calendar/>
       ),
     },
     {

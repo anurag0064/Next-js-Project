@@ -93,7 +93,7 @@ function TableView() {
         </thead>
         <tbody>
           {table_row.map(({ id, name, assignees, startDate, dueDate, priority }, index) => (
-            <tr key={id} className={`${index % 2 === 0 ? 'even:bg-blue-gray-50/50 rounded-full' : 'odd:bg-white'}`}>
+            <tr key={id} className={`${index % 2 === 0 ? 'even:bg-blue-gray-50/50 rounded-full hover:bg-slate-200' : 'odd:bg-white hover:bg-slate-200'}`}>
               <td className="p-4 border border-blue-gray-100">
                 <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
               </td>

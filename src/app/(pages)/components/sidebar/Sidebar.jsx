@@ -12,7 +12,7 @@ export default function Sidebar() {
             All Projects
           </h5>
         </div>
-        <div className=''>
+        <div className='flex flex-col'>
          <Tab/>
         </div>
       </div>

@@ -8,6 +8,8 @@ import { FaRegFolderClosed } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { MdOutlineArchive } from "react-icons/md";
+import {IoMdArrowDropdown} from "react-icons/io"
+import { Button } from '@material-tailwind/react';
 
 
 const Tabs = ({ tabs }) => {
@@ -21,14 +23,15 @@ const Tabs = ({ tabs }) => {
         <div className="rounded">
             <div className="flex">
                 {tabs.map((tab, index) => (
-                    <button
+                    <Button
                         key={index}
-                        className={`py-2 px-4 border-b-2 ${index === activeTab ? ' border-gray-300 text-slate-400' : ' border-gray-200 text-slate-400'}  hover:text-black hover:border-black font-semibold leading-8 focus:outline-none`}
+                        variant="text"
+                        className={`py-2 px-4 border-b-2 rounded-none text-sm ${index === activeTab ? 'border-gray-300 text-gray-900' : 'border-gray-200 text-gray-500'} hover:text-black hover:border-black`}
                         style={{ width: `${100 / tabs.length}%` }}
                         onClick={() => changeTab(index)}
                     >
                         {tab.label}
-                    </button>
+                    </Button>
                 ))}
             </div>
             <div className="p-4">
@@ -38,66 +41,129 @@ const Tabs = ({ tabs }) => {
     );
 };
 
+const sections = [
+    {
+        icon: FaRegClock,
+        label: 'Recent',
+        content: (
+            <div>
+                <ul className="flex flex-col gap-3">
+                <li>Saas Website  </li>
+                    <li>Fintech Landing Page</li>
+                    <li>Banking Mobile App</li>
+                </ul>
+            </div>
+        ),
+    },
+    {
+        icon: FaRegFolderClosed,
+        label: 'Projects',
+        content: (
+            <div>
+                <ul className="flex flex-col gap-3">
+                    <li>Timmy-Saas Website</li>
+                    <li>Metrica-CRM Web App </li>
+                    <li>Style-Fashion Landing Page</li>
+                    <li>Finsy-Banking Mobile App</li>
+                    <li>Lala-Fintech Landing Page</li>
+                    <li>Makarons-Rebranding Video</li>
+                    <li>Pipel-Social Media Page</li>
+                    <li>Solutions-Company Profile</li>
+                </ul>
+            </div>
+        ),
+    },
+    {
+        icon: FaRegStar,
+        label: 'Favorite Projects',
+        content: (
+            <div>
+                <ul className="flex flex-col gap-3">
+                    <li>Saas Website  </li>
+                    <li>Fintech Landing Page</li>
+                    <li>Banking Mobile App</li>
+                </ul>
+            </div>
+        ),
+    },
+    {
+        icon: MdOutlineArchive,
+        label: 'Archive Projects',
+        content: (
+            <div>
+               <ul className="flex flex-col gap-3">
+               <li>Timmy-Saas Website</li>
+                    <li>Metrica-CRM Web App </li>
+                    <li>Style-Fashion Landing Page</li>
+                    <li>Finsy-Banking Mobile App</li>
+                    <li>Lala-Fintech Landing Page</li>
+                    <li>Makarons-Rebranding Video</li>
+                    <li>Pipel-Social Media Page</li>
+                    <li>Solutions-Company Profile</li>
+                </ul>
+            </div>
+        ),
+    },
+    {
+        icon: MdDelete,
+        label: 'Deleted Projects',
+        content: (
+            <div>
+               <ul className="flex flex-col gap-3">
+                    <li>Saas Website  </li>
+                    <li>Fintech Landing Page</li>
+                    <li>Banking Mobile App</li>
+                </ul>
+            </div>
+        ),
+    },
+];
+
 const Tab = () => {
+    const [openDropdown, setOpenDropdown] = useState(null);
+
+    const handleDropdown = (index) => {
+        setOpenDropdown(openDropdown === index ? null : index);
+    };
+
     const tabs = [
         {
             label: 'Team',
             content: (
                 <div>
-                    <DefaultInput />
-                    <div className='flex items-center gap-2 mt-5'>
-                        <div>
-                            <IoMdArrowDropright />
+                    {sections.map((section, index) => (
+                        <div key={index}>
+                            <div
+                                className="flex items-center gap-2 mt-5 cursor-pointer"
+                                onClick={() => handleDropdown(index)}
+                            >
+                                <div>
+                                    {openDropdown === index ? (
+                                        <IoMdArrowDropdown />
+                                    ) : (
+                                        <IoMdArrowDropright />
+                                    )}
+                                </div>
+                                <div className="flex items-center gap-2 group">
+                                    <section.icon className="text-sm group-hover:text-slate-500" />
+                                    <h1 className="text-sm text-black group-hover:text-slate-500 ">{section.label}</h1>
+                                </div>
+                            </div>
+                            {openDropdown === index && (
+                                <div className="text-sm rounded flex flex-col p-5">
+                                    {section.content}
+                                </div>
+                            )}
                         </div>
-                        <div className='flex items-center gap-2'>
-                            <FaRegClock className='text-sm' />
-                            <h1 className='text-sm text-black '>Recent</h1>
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2 mt-5'>
-                        <div>
-                            <IoMdArrowDropright />
-                        </div>
-                        <div className='flex items-center gap-2'>
-                            <FaRegFolderClosed className='text-sm' />
-                            <h1 className='text-sm text-black'>Projects</h1>
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2 mt-5'>
-                        <div>
-                            <IoMdArrowDropright />
-                        </div>
-                        <div className='flex items-center gap-2'>
-                            <FaRegStar className='text-sm' />
-                            <h1 className='text-sm text-black'>Favorite Projects</h1>
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2 mt-5'>
-                        <div>
-                            <IoMdArrowDropright />
-                        </div>
-                        <div className='flex items-center gap-2'>
-                            <MdOutlineArchive className='text-sm' />
-                            <h1 className='text-sm text-black'>Archive Projects</h1>
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2 mt-5'>
-                        <div>
-                            <IoMdArrowDropright />
-                        </div>
-                        <div className='flex items-center gap-2 '>
-                            <MdDelete className='text-sm' />
-                            <h1 className='text-sm text-black '>Deleted Projects</h1>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             ),
-            heading: "Recent"
+            heading: 'Recent',
         },
         {
             label: 'Personal',
-            content: <p className="text-gray-800">Hello</p>
-        }
+            content: <p className="text-gray-800">Hello</p>,
+        },
     ];
 
     return (
@@ -106,4 +172,5 @@ const Tab = () => {
         </div>
     );
 };
+
 export default Tab;
