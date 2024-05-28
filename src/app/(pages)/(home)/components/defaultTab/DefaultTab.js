@@ -75,20 +75,20 @@ export function DefaultTab() {
               </Tab>
             ))}
           </div>
-          <div className="flex items-center gap-5 px-4">
+          <div className="flex items-center gap-6 px-4">
             <div className="flex items-center border-">
               <IoIosArrowBack className="cursor-pointer" />
-              <h1 className="mx-2">January 2024</h1>
+              <h1 className="mx-2 text-sm">January 2024</h1>
               <IoIosArrowForward className="cursor-pointer" />
             </div>
             <div className="flex gap-3">
             <div className="flex items-center gap-2">
             <CiFilter className="text-slate-400"/>
-             <h1 className="text-slate-400">Sort</h1>
+             <h1 className="text-slate-400 text-sm">Sort</h1>
              </div>
-              <div className="flex items-center gap-2 ">
+              <div className="flex items-center gap-2">
               <IoFilter className="text-slate-400"/>
-              <h1 className="text-slate-400">Filter</h1>
+              <h1 className="text-slate-400 text-sm">Filter</h1>
               </div>
             </div>
           </div>
