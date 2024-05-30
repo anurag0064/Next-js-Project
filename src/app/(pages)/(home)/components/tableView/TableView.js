@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import memoji from "../../../../../assets/images/memoji.jpg";
 import memoji1 from "../../../../../assets/images/memoji1.jpeg";
 import memoji2 from "../../../../../assets/images/memoji2.jpg";
-import { Card, Typography } from "@material-tailwind/react";
+import { Card, Typography, tab } from "@material-tailwind/react";
 import { TeamImages } from '@/app/(pages)/components/profileImage/TeamImages';
+import { set } from 'date-fns';
 
-const table_head = ["", "Name", "Assignees", "Start Date", "Due Date", "Priority"];
+const table_head = ["","Id", "Name", "Assignees", "Start Date", "Due Date", "Priority"];
 
 const table_row = [
   {
@@ -67,17 +68,22 @@ const table_row = [
 ];
 
 function TableView() {
-  const [tableRows, setTableRows] = useState(table_row);
 
-  const handleCheckboxChange = (id) => {
-    setTableRows(prevRows => 
-      prevRows.map(row => 
-        row.id === id ? { ...row, checked: !row.checked } : row
-      )
-    );
+  const [table, setTable] = useState(table_row);
+
+  const handleChange = (id) => {
+    const filterData = table.map((item) => {
+      if (item.id === id) {
+        return { ...item, checked: !item.checked }
+      } else {
+        return { ...item }
+      }
+    })
+    setTable([...filterData])
   };
 
-  const renderTable = (rows) => (
+
+  const Table = (rows) => (
     <table className="w-full min-w-max table-auto text-left border border-blue-gray-100 mt-5">
       <thead>
         <tr>
@@ -95,66 +101,51 @@ function TableView() {
         </tr>
       </thead>
       <tbody>
-        {rows.map(({ id, name, assignees, startDate, dueDate, priority, checked }, index) => (
-          <tr key={id} className={`${index % 2 === 0 ? 'even:bg-blue-gray-50/50 rounded-full hover:bg-slate-200' : 'odd:bg-white hover:bg-slate-200'}`}>
+        {rows.map((row, index) => (
+          <tr key={row.id} className={`${index % 2 === 0 ? 'even:bg-blue-gray-50/50 rounded-full hover:bg-slate-100' : 'odd:bg-white hover:bg-slate-100'}`}>
             <td className="p-4 border border-blue-gray-100">
-              <input 
-                type="checkbox" 
-                className="form-checkbox h-5 w-5 text-blue-600" 
-                checked={checked}
-                onChange={() => handleCheckboxChange(id)}
+              <input
+                type="checkbox"
+                className="form-checkbox h-5 w-5 text-blue-600"
+                checked={row.checked}
+                onChange={() => handleChange(row.id)}
               />
             </td>
-            <td className="p-4 border border-blue-gray-100">
-              <Typography variant="small" color="blue-gray" className=" text-black font-semibold">
-                {name}
-              </Typography>
-            </td>
-            <td className="p-4 border border-blue-gray-100">
-              <Typography variant="small" color="blue-gray" className=" text-black font-semibold">
-                {assignees}
-              </Typography>
-            </td>
-            <td className="p-4 border border-blue-gray-100">
-              <Typography variant="small" color="blue-gray" className="font-semibold">
-                {startDate}
-              </Typography>
-            </td>
-            <td className="p-4 border border-blue-gray-100">
-              <Typography variant="small" color="blue-gray" className="font-semibold">
-                {dueDate}
-              </Typography>
-            </td>
-            <td className={`p-4 border border-blue-gray-100 ${priority === 'High' ? 'text-red-500' : priority === 'Medium' ? 'text-yellow-500' : 'text-green-500'}`}>
-              <Typography variant="small" color="blue-gray" className="font-normal">
-                {priority}
-              </Typography>
-            </td>
+            {Object.entries(row).map((value) => {
+              console.log("first", value)
+              return <td className="p-4 border border-blue-gray-100">
+                <Typography variant="small" color="blue-gray" className=" text-black font-semibold">
+                  {value[1]}
+                </Typography>
+              </td>
+            })
+            }
           </tr>
         ))}
       </tbody>
     </table>
   );
 
-  const uncheckedRows = tableRows.filter(row => !row.checked);
-  const checkedRows = tableRows.filter(row => row.checked);
+  const unchecked = table.filter(row => !row.checked);
+  const checked = table.filter(row => row.checked);
+
+  console.log("uncheck ----", unchecked, checked)
 
   return (
     <div className="h-full w-full overflow-scroll mt-5 border-1">
       <Card>
-        <Typography variant="h6" color="blue-gray" className="p-4 border-b border-blue-gray-100">
-           Project List
+        <Typography variant="h6" color="blue-gray" className="p-4 border-b border-blue-gray-100 bg-fuchsia-600 text-white">
+          Project List
         </Typography>
-        {renderTable(uncheckedRows)}
+        {Table(unchecked)}
       </Card>
       <Card className="mt-5">
-        <Typography variant="h6" color="blue-gray" className="p-4 border-b border-blue-gray-100">
+        <Typography variant="h6" color="blue-gray" className="p-4 border-b border-blue-gray-100 bg-blue-600 text-white">
           Checked List
         </Typography>
-        {renderTable(checkedRows)}
+        {Table(checked)}
       </Card>
     </div>
   );
 }
-
 export default TableView;

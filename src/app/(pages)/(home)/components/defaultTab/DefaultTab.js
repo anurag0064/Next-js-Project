@@ -67,7 +67,7 @@ export function DefaultTab() {
                 onClick={() => setActiveTab(value)}
                 className={`cursor-pointer px-4 py-2 ${
                   activeTab === value
-                    ? 'text-black border-b-2 border-black'
+                    ? 'text-black border-b-2 border-black remove-bg'
                     : 'text-gray-600'
                 }`}
               >

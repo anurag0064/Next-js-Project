@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.remove-bg div:nth-child(2) {
+    background-color: transparent !important;
+}
