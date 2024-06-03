@@ -12,7 +12,7 @@ const DefaultInput = () => {
           type="search"
           className="border text-black outline-none h-10 block w-full pl-10 pr-3 text-sm rounded-lg
           focus:ring-0 ring-0"
-          placeholder="Search "
+          placeholder="Search"
         />
       </div>
     </div>

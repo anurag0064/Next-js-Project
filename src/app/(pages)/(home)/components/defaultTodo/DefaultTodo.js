@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosAdd } from "react-icons/io";
 import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
-import { Button } from '@material-tailwind/react';
+import Button from '@/app/components/buttons/Button';
 import TableView from '../tableView/TableView';
 import Popup from './components/popup/Popup';
 
@@ -28,9 +28,12 @@ function DefaultTodo() {
         <h1 className="border border-slate-200 text-xs rounded-full w-7 h-7 text-[#e90fbf] font-bold bg-[#ffd5f4] flex items-center justify-center p-1">4</h1>
       </div>
       <div className='flex items-center '>
-        <Button className="w-full py-2 px-4 font-semibold border border-gray-300 rounded-lg text-black flex items-center justify-center" onClick={handleCardClick}>
-          <IoIosAdd className='mr-2 text-2xl font-semibold' />Add New
-        </Button>
+        <Button
+                    icon={<IoIosAdd />}
+                    text={'Add New'}
+                    className={"w-full py-2 px-4 font-semibold border border-gray-300 rounded-lg text-black flex items-center justify-center"}
+                    onClick={handleCardClick}
+                />
       </div>
       {isDropdownOpen && (
         <TableView />
