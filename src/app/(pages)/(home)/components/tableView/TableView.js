@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Typography } from "@material-tailwind/react";
 
-function TableView() {
+function TableView({ isPopupOpen }) {
   const [table, setTable] = useState([]);
-  const [localStorageData, setLocalStorageData] = useState([]); 
+  const [localStorageData, setLocalStorageData] = useState([]);
 
   useEffect(() => {
     const storedData = localStorage.getItem('tasks');
     if (storedData) {
       setLocalStorageData(JSON.parse(storedData));
     }
-  }, []);
+  }, [localStorage, isPopupOpen]);
 
 
   return (

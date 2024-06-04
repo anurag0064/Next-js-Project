@@ -29,16 +29,16 @@ function DefaultTodo() {
       </div>
       <div className='flex items-center '>
         <Button
-                    icon={<IoIosAdd />}
-                    text={'Add New'}
-                    className={"w-full py-2 px-4 font-semibold border border-gray-300 rounded-lg text-black flex items-center justify-center"}
-                    onClick={handleCardClick}
-                />
+          icon={<IoIosAdd />}
+          text={'Add New'}
+          className={"w-full py-2 px-4 font-semibold border border-gray-300 rounded-lg text-black flex items-center justify-center"}
+          onClick={handleCardClick}
+        />
       </div>
       {isDropdownOpen && (
-        <TableView />
+        <TableView isPopupOpen={isPopupOpen} />
       )}
-         {isPopupOpen && <Popup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />}
+      {isPopupOpen && <Popup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />}
     </div>
   );
 }
