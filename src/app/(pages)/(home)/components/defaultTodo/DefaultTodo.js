@@ -31,7 +31,7 @@ function DefaultTodo() {
         <Button
           icon={<IoIosAdd />}
           text={'Add New'}
-          className={"w-full py-2 px-4 font-semibold border border-gray-300 rounded-lg text-black flex items-center justify-center"}
+          className={"w-full py-2 px-4 font-semibold border border-gray-300 rounded-lg text-black text-sm flex items-center justify-center"}
           onClick={handleCardClick}
         />
       </div>

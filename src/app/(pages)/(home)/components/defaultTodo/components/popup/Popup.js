@@ -8,7 +8,6 @@ import Button from '@/app/components/buttons/Button';
 
 function Popup({ isOpen, onClose = () => null }) {
     const cancelButtonRef = useRef(null);
-
     const [data, setData] = useState([]);
 
     const [formState, setFormState] = useState({
